@@ -1,0 +1,132 @@
+
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #181818;
+}
+
+.main {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.btn {
+    cursor: pointer;
+}
+
+.btnIcon:hover svg {
+    fill: transparent;
+    stroke: #acacac;
+    cursor: pointer;
+}
+
+.btnIcon:active svg {
+    fill: transparent;
+    stroke: #ffffff;
+    cursor: pointer;
+}
+
+.btnIcon:active .trackPlay__likeSvg,
+.btnIcon:active .trackPlay__dislikeSvg {
+    fill: #696969;
+    stroke: #ffffff;
+    cursor: pointer;
+}
+
+.btn-text {
+    &:hover {
+        border-color: #d9b6ff;
+        color: #d9b6ff;
+        cursor: pointer;
+    }
+
+    &:active {
+        border-color: #ad61ff;
+        color: #ad61ff;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,136 @@
+
+
+.modal__form input:first-child {
+    margin-bottom: 30px;
+}
+.modal__btnEnter:hover {
+    background-color: #3f007d;
+}
+
+.modal__btnSignup:hover {
+    background-color: #f4f5f6;
+}
+
+.modal__btnEnter:active {
+    background-color: #271a58;
+}
+
+.modal__btnSignup:active {
+    background-color: #d9d9d9;
+}
+
+.modal__logo {
+    width: 140px;
+    height: 21px;
+    margin-bottom: 34px;
+    background-color: transparent;
+}
+
+.modal__logo img {
+    width: 140px;
+    height: auto;
+}
+
+.modal__input {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #d0cece;
+    padding: 8px 1px;
+}
+
+.modal__input::-webkit-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input:-ms-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input::-ms-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input::placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__btnEnter {
+    width: 278px;
+    height: 52px;
+    background-color: #580ea2;
+    border-radius: 6px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    border: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #ffffff;
+}
+
+.modal__btnSignup {
+    width: 278px;
+    height: 52px;
+    background-color: transparent;
+    border: 1px solid #d0cece;
+    border-radius: 6px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #000000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.login {
+    margin-bottom: 30px;
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+    color: red;
+}

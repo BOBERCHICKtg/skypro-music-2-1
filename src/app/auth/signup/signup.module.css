@@ -1,0 +1,107 @@
+
+
+.modal__btnSignupEnt:hover {
+    background-color: #3f007d;
+}
+
+.modal__btnSignupEnt:active {
+    background-color: #271a58;
+}
+
+.modal__block {
+    position: absolute;
+    z-index: 2;
+    left: calc(50% - (366px / 2));
+    top: calc(50% - (439px / 2));
+    opacity: 1;
+}
+
+.modal__logo {
+    width: 140px;
+    height: 21px;
+    margin-bottom: 34px;
+    background-color: transparent;
+}
+
+.modal__logo img {
+    width: 140px;
+    height: auto;
+}
+
+.modal__input {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #d0cece;
+    padding: 8px 1px;
+    margin-right: 3px;
+    margin-bottom: 30px;
+}
+
+.modal__input::-webkit-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input:-ms-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input::-ms-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input::placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__btnSignupEnt {
+    width: 278px;
+    height: 62px;
+    background-color: #580ea2;
+    border-radius: 6px;
+    margin-left: 4px;
+    border: none;
+    margin-top: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.05px;
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+    color: red;
+}

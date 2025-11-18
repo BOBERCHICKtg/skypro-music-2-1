@@ -1,0 +1,330 @@
+.bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(28, 28, 28, 0.5);
+}
+
+.bar__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.bar__playerProgress {
+    width: 100%;
+    height: 5px;
+    background: #2e2e2e;
+}
+
+.bar__playerBlock {
+    height: 73px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.bar__player {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.bar__volumeBlock {
+    width: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 92px 0 0;
+}
+
+.player__controls {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 0 27px 0 31px;
+}
+
+.player__btnPrev,
+.player__btnPlay,
+.player__btnNext,
+.player__btnRepeat,
+.player__btnShuffle {
+    padding: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.player__btnPrev {
+    margin-right: 23px;
+}
+
+.player__btnPrevSvg {
+    width: 15px;
+    height: 14px;
+}
+
+.player__btnPlay {
+    margin-right: 23px;
+}
+
+.player__btnPlaySvg {
+    width: 22px;
+    height: 20px;
+    fill: #d9d9d9;
+}
+
+.player__btnNext {
+    margin-right: 28px;
+    fill: #a53939;
+}
+
+.player__btnNextSvg {
+    width: 15px;
+    height: 14px;
+    fill: inherit;
+    stroke: #d9d9d9;
+}
+
+.player__btnRepeat {
+    margin-right: 24px;
+}
+
+.player__btnRepeatSvg {
+    width: 18px;
+    height: 12px;
+    fill: transparent;
+    stroke: #696969;
+}
+
+.player__btnShuffle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.player__btnShuffleSvg {
+    width: 19px;
+    height: 12px;
+    fill: transparent;
+    stroke: #696969;
+}
+
+.player__trackPlay {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.trackPlay__contain {
+    width: auto;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'image author''image album';
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.trackPlay__image {
+    width: 51px;
+    height: 51px;
+    background-color: #313131;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-right: 12px;
+    grid-row: 1;
+    -ms-grid-row-span: 2;
+    grid-column: 1;
+    grid-area: image;
+}
+
+.trackPlay__svg {
+    width: 18px;
+    height: 17px;
+    fill: transparent;
+    stroke: #4e4e4e;
+}
+
+.trackPlay__author {
+    grid-row: 1;
+    grid-column: 2;
+    grid-area: author;
+    min-width: 49px;
+}
+
+.trackPlay__authorLink {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.trackPlay__album {
+    grid-row: 2;
+    grid-column: 2;
+    grid-area: album;
+    min-width: 49px;
+}
+
+.trackPlay__albumLink {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 24px;
+    color: #ffffff;
+}
+
+.trackPlay__likeDis {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-left: 26%;
+}
+
+.trackPlay__like,
+.trackPlay__dislike {
+    padding: 5px;
+}
+
+.trackPlay__likeSvg {
+    width: 14px;
+    height: 12px;
+    fill: transparent;
+    stroke: #696969;
+}
+
+.trackPlay__dislike {
+    margin-left: 28.5px;
+}
+
+.trackPlay__dislikeSvg {
+    width: 14.34px;
+    height: 13px;
+    fill: transparent;
+    stroke: #696969;
+}
+
+.volume__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: end;
+}
+
+.volume__image {
+    width: 13px;
+    height: 18px;
+    margin-right: 17px;
+}
+
+.volume__svg {
+    width: 13px;
+    height: 18px;
+    fill: transparent;
+}
+
+.volume__progress {
+    width: 109px;
+    display: flex;
+    align-items: center;
+}
+
+.volume__progressLine {
+    width: 100%;
+    height: 2px;
+    appearance: none;
+    background: #797979;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume__progressLine::-webkit-slider-runnable-track {
+    height: 2px;
+    background: #797979;
+    border-radius: 5px;
+}
+
+.volume__progressLine::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #1a1a1a;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: relative;
+    margin-top: -7px;
+}
+
+.player__btnShuffleActive .player__btnShuffleSvg {
+  color: #fff;
+  fill: #ffffffe3;
+}
