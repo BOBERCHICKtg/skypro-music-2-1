@@ -90,19 +90,14 @@ export const getSelectionTracks = async (
 ): Promise<TrackType[]> => {
   const selection = await getSelectionById(selectionId);
 
-  if (Array.isArray(selection)) {
-    return selection;
+  if (!selection || !selection.items || !Array.isArray(selection.items)) {
+    return [];
   }
 
-  if (selection && Array.isArray(selection.items)) {
-    return selection.items;
-  }
+  const allTracks = await getTracks();
+  const trackIds = selection.items;
 
-  if (selection && Array.isArray(selection.tracks)) {
-    return selection.tracks;
-  }
-
-  return [];
+  return allTracks.filter((track) => trackIds.includes(track._id));
 };
 
 export const createSelection = async (selectionData: any): Promise<any> => {
