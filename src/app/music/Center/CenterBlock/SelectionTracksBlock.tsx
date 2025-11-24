@@ -41,15 +41,15 @@ export default function SelectionTracksBlock({
       setIsLoading(true);
       setError(null);
 
-      const selectionData = await getSelectionById(selectionId);
+      const [selectionData, selectionTracks] = await Promise.all([
+        getSelectionById(selectionId),
+        getSelectionTracks(selectionId),
+      ]);
 
       if (selectionData && selectionData.name) {
         setSelectionName(selectionData.name);
-      } else {
-        setSelectionName("Подборка");
       }
 
-      const selectionTracks = await getSelectionTracks(selectionId);
       setTracks(selectionTracks);
     } catch (error: unknown) {
       const errorMessage =

@@ -3,10 +3,9 @@ import { BASE_URL } from "../constants";
 import { TrackType } from "@/src/components/sharedTypes/types";
 import { getAuthToken } from "../auth/authApi";
 
-export const getTracks = (): Promise<TrackType[]> => {
-  return axios(BASE_URL + "/catalog/track/all/").then((res) => {
-    return res.data;
-  });
+export const getTracks = async (): Promise<TrackType[]> => {
+  const response = await axios.get(BASE_URL + "/catalog/track/all/");
+  return response.data.data || [];
 };
 
 export const addToFavorites = async (trackId: string): Promise<any> => {
@@ -88,16 +87,26 @@ export const getSelectionById = async (selectionId: string): Promise<any> => {
 export const getSelectionTracks = async (
   selectionId: string
 ): Promise<TrackType[]> => {
-  const selection = await getSelectionById(selectionId);
+  try {
+    const selection = await getSelectionById(selectionId);
 
-  if (!selection || !selection.items || !Array.isArray(selection.items)) {
+    if (
+      !selection ||
+      !selection.data ||
+      !selection.data.items ||
+      !Array.isArray(selection.data.items)
+    ) {
+      return [];
+    }
+
+    const allTracks = await getTracks();
+    const trackIds = selection.data.items;
+
+    return allTracks.filter((track) => trackIds.includes(track._id));
+  } catch (error) {
+    console.error("Error loading selection tracks:", error);
     return [];
   }
-
-  const allTracks = await getTracks();
-  const trackIds = selection.items;
-
-  return allTracks.filter((track) => trackIds.includes(track._id));
 };
 
 export const createSelection = async (selectionData: any): Promise<any> => {
