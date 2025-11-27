@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./centerblock.module.css";
 import { data } from "@/src/data";
 import Track from "@/src/components/Track/Track";
@@ -11,29 +11,81 @@ import { useAppSelector } from "@/src/components/store/store";
 
 export default function CenterBlock() {
   const [showArtistFilter, setShowArtistFilter] = useState<boolean>(false);
+  const [showYearFilter, setShowYearFilter] = useState<boolean>(false);
+  const [showGenreFilter, setShowGenreFilter] = useState<boolean>(false);
+  const filterRef = useRef<HTMLDivElement>(null);
   const likedTrackIds = useAppSelector(
     (state) => state.favorites.likedTrackIds
   );
 
   const artists = getUniqueValuesByKey(data, "author");
+  // Добавим примеры годов и жанров (замените на реальные данные из вашего массива data)
+  const years = ["2024", "2023", "2022", "2021", "2020"];
+  const genres = ["Рок", "Поп", "Хип-хоп", "Электронная", "Джаз"];
+
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const isPlaying = useAppSelector((state) => state.tracks.isPlay);
+
+  // Закрытие фильтров при клике вне компонента
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
+      ) {
+        setShowArtistFilter(false);
+        setShowYearFilter(false);
+        setShowGenreFilter(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const toggleArtistFilter = (e: React.MouseEvent): void => {
     e.stopPropagation();
     setShowArtistFilter(!showArtistFilter);
+    setShowYearFilter(false);
+    setShowGenreFilter(false);
   };
 
-  const closeFilter = (): void => {
+  const toggleYearFilter = (e: React.MouseEvent): void => {
+    e.stopPropagation();
+    setShowYearFilter(!showYearFilter);
     setShowArtistFilter(false);
+    setShowGenreFilter(false);
+  };
+
+  const toggleGenreFilter = (e: React.MouseEvent): void => {
+    e.stopPropagation();
+    setShowGenreFilter(!showGenreFilter);
+    setShowArtistFilter(false);
+    setShowYearFilter(false);
+  };
+
+  const handleFilterItemClick = (value: string, type: string) => {
+    console.log(`Выбран ${type}:`, value);
+    // Здесь будет логика фильтрации
+    if (type === "artist") {
+      setShowArtistFilter(false);
+    } else if (type === "year") {
+      setShowYearFilter(false);
+    } else if (type === "genre") {
+      setShowGenreFilter(false);
+    }
   };
 
   return (
-    <div className={styles.centerblock} onClick={closeFilter}>
+    <div className={styles.centerblock}>
       <Search title="" />
       <h2 className={styles.centerblock__h2}>Треки</h2>
-      <div className={styles.centerblock__filter}>
+
+      <div className={styles.centerblock__filter} ref={filterRef}>
         <div className={styles.filter__title}>Искать по:</div>
+
         <div className={styles.filter__buttonWrapper}>
           <div
             className={classNames(styles.filter__button, {
@@ -48,7 +100,7 @@ export default function CenterBlock() {
                   <div
                     key={artist}
                     className={styles.filter__item}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={() => handleFilterItemClick(artist, "artist")}
                   >
                     {artist}
                   </div>
@@ -57,9 +109,56 @@ export default function CenterBlock() {
             )}
           </div>
         </div>
-        <div className={styles.filter__button}>году выпуска</div>
-        <div className={styles.filter__button}>жанру</div>
+
+        <div className={styles.filter__buttonWrapper}>
+          <div
+            className={classNames(styles.filter__button, {
+              [styles.active]: showYearFilter,
+            })}
+            onClick={toggleYearFilter}
+          >
+            году выпуска
+            {showYearFilter && (
+              <div className={styles.filter__list}>
+                {years.map((year: string) => (
+                  <div
+                    key={year}
+                    className={styles.filter__item}
+                    onClick={() => handleFilterItemClick(year, "year")}
+                  >
+                    {year}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className={styles.filter__buttonWrapper}>
+          <div
+            className={classNames(styles.filter__button, {
+              [styles.active]: showGenreFilter,
+            })}
+            onClick={toggleGenreFilter}
+          >
+            жанру
+            {showGenreFilter && (
+              <div className={styles.filter__list}>
+                {genres.map((genre: string) => (
+                  <div
+                    key={genre}
+                    className={styles.filter__item}
+                    onClick={() => handleFilterItemClick(genre, "genre")}
+                  >
+                    {genre}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
+
       <div className={styles.centerblock__content}>
         <div className={styles.content__title}>
           <div className={classNames(styles.playlistTitle__col, styles.col01)}>

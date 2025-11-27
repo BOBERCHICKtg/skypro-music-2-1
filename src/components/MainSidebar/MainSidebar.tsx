@@ -18,27 +18,58 @@ interface UserData {
 export default function MainSidebar() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [user, setUser] = useState<UserData | null>(null);
+  const [authStatus, setAuthStatus] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
-    if (isAuthenticated()) {
-      const userData = getUserData();
-      setUser(userData);
-    }
+    // Проверяем авторизацию при загрузке и обновляем состояние
+    const checkAuth = () => {
+      const authenticated = isAuthenticated();
+      setAuthStatus(authenticated);
+
+      if (authenticated) {
+        const userData = getUserData();
+        setUser(userData);
+      } else {
+        setUser(null);
+      }
+    };
+
+    checkAuth();
+
+    // Слушаем изменения в localStorage для обновления статуса
+    const handleStorageChange = () => {
+      checkAuth();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    // Также проверяем периодически (на случай изменений в других вкладках)
+    const interval = setInterval(checkAuth, 1000);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      clearInterval(interval);
+    };
   }, []);
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
       await logoutUser();
+      // Обновляем состояние после выхода
       setUser(null);
-      router.push("/auth/signin");
+      setAuthStatus(false);
+      // Не перенаправляем на страницу входа, остаемся на текущей странице
     } catch (error) {
+      // В случае ошибки все равно очищаем локальное состояние
       localStorage.removeItem("authToken");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("userData");
       setUser(null);
-      router.push("/auth/signin");
+      setAuthStatus(false);
+    } finally {
+      setIsLoggingOut(false);
     }
   };
 
@@ -47,11 +78,11 @@ export default function MainSidebar() {
       return "Выход...";
     }
 
-    if (user && user.username) {
+    if (authStatus && user && user.username) {
       return user.username;
     }
 
-    if (isAuthenticated()) {
+    if (authStatus) {
       return "Пользователь";
     }
 
@@ -59,7 +90,7 @@ export default function MainSidebar() {
   };
 
   const handleSidebarClick = () => {
-    if (!isAuthenticated()) {
+    if (!authStatus) {
       router.push("/auth/signin");
       return;
     }
@@ -67,6 +98,15 @@ export default function MainSidebar() {
     if (!isLoggingOut) {
       handleLogout();
     }
+  };
+
+  const getIconPath = (): string => {
+    if (isLoggingOut) {
+      return "/img/icon/sprite.svg#logout";
+    }
+    return authStatus
+      ? "/img/icon/sprite.svg#logout"
+      : "/img/icon/sprite.svg#login";
   };
 
   return (
@@ -82,13 +122,7 @@ export default function MainSidebar() {
         <p className={styles.sidebar__personalName}>{getDisplayName()}</p>
         <div className={styles.sidebar__icon}>
           <svg>
-            <use
-              xlinkHref={
-                isAuthenticated()
-                  ? "/img/icon/sprite.svg#logout"
-                  : "/img/icon/sprite.svg#login"
-              }
-            ></use>
+            <use xlinkHref={getIconPath()}></use>
           </svg>
         </div>
       </div>
@@ -100,7 +134,7 @@ export default function MainSidebar() {
               <Image
                 className={styles.sidebar__img}
                 src="/img/playlist01.png"
-                alt="day's playlist"
+                alt="Плейлист дня"
                 width={250}
                 height={170}
               />
@@ -111,7 +145,7 @@ export default function MainSidebar() {
               <Image
                 className={styles.sidebar__img}
                 src="/img/playlist02.png"
-                alt="day's playlist"
+                alt="100 танцевальных хитов"
                 width={250}
                 height={170}
               />
@@ -122,7 +156,7 @@ export default function MainSidebar() {
               <Image
                 className={styles.sidebar__img}
                 src="/img/playlist03.png"
-                alt="day's playlist"
+                alt="Инди-заряд"
                 width={250}
                 height={170}
               />

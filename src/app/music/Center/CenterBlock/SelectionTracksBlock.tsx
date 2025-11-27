@@ -12,6 +12,7 @@ import {
   getSelectionById,
 } from "@/src/services/tracks/tracksApi";
 import { TrackType } from "@/src/components/sharedTypes/types";
+import { getAuthToken } from "@/src/services/auth/authApi";
 
 interface SelectionTracksBlockProps {
   selectionId: string;
@@ -25,6 +26,7 @@ export default function SelectionTracksBlock({
   const [error, setError] = useState<string | null>(null);
   const [tracks, setTracks] = useState<TrackType[]>([]);
   const [selectionName, setSelectionName] = useState<string>("Подборка");
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const likedTrackIds = useAppSelector(
     (state) => state.favorites.likedTrackIds
@@ -33,6 +35,9 @@ export default function SelectionTracksBlock({
   const isPlaying = useAppSelector((state) => state.tracks.isPlay);
 
   useEffect(() => {
+    // Проверяем авторизацию при загрузке компонента
+    const token = getAuthToken();
+    setIsAuthenticated(!!token);
     loadSelectionData();
   }, [selectionId]);
 
@@ -41,15 +46,15 @@ export default function SelectionTracksBlock({
       setIsLoading(true);
       setError(null);
 
-      const [selectionData, selectionTracks] = await Promise.all([
-        getSelectionById(selectionId),
-        getSelectionTracks(selectionId),
-      ]);
+      const selectionData = await getSelectionById(selectionId);
 
-      if (selectionData && selectionData.name) {
-        setSelectionName(selectionData.name);
+      if (selectionData?.data?.name) {
+        setSelectionName(selectionData.data.name);
+      } else {
+        setSelectionName("Подборка");
       }
 
+      const selectionTracks = await getSelectionTracks(selectionId);
       setTracks(selectionTracks);
     } catch (error: unknown) {
       const errorMessage =
@@ -134,7 +139,8 @@ export default function SelectionTracksBlock({
             isCurrent={currentTrack?._id === track._id}
             isPlaying={isPlaying && currentTrack?._id === track._id}
             playlist={tracks}
-            isLiked={likedTrackIds.includes(track._id)}
+            isLiked={isAuthenticated && likedTrackIds.includes(track._id)}
+            isAuthenticated={isAuthenticated}
           />
         ))}
       </>
