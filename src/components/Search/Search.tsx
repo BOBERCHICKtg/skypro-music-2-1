@@ -1,18 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from "./search.module.css";
 
-type searchProp = {
+type SearchProps = {
   title: string;
+  onSearch: (query: string) => void;
+  debounceDelay?: number; 
 };
 
-export default function Search({ title }: searchProp) {
+export default function Search({
+  title,
+  onSearch,
+  debounceDelay = 300,
+}: SearchProps) {
   const [searchInput, setSearchInput] = useState("");
+
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onSearch(searchInput);
+    }, debounceDelay);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchInput, onSearch, debounceDelay]);
 
   const onSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
   };
+
 
   return (
     <div className={styles.centerblock__search}>
