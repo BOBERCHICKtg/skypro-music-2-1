@@ -1,0 +1,49 @@
+.profile {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #181818;
+    padding: 20px;
+}
+
+.profileImg {
+    border-radius: 200px;
+    width: 200px;
+    height: 200px;
+    border: 5px solid white;
+}
+
+.profileBox {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.profileName {
+    color: white;
+    font-size: 30px;
+    border-bottom: 5px solid white;
+}
+
+.profileInt {
+    color: #02ff2cdc;
+}
+
+.timer {
+    color: white;
+}
+
+.main {
+    padding: 50px;
+}
+
+.mainTrack {
+    color: white;
+}
+
+.mainRecent {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}

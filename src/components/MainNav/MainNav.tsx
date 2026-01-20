@@ -75,11 +75,10 @@ export default function MainNav() {
             </Link>
           </li>
 
-          {/* Показываем "Мой плейлист" только для авторизованных пользователей */}
           {isAuthenticated && (
             <li className={styles.menu__item}>
               <Link
-                href={"/music/favorites"}
+                href={"/music/Center/MyPlaylist"}
                 className={styles.menu__link}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -87,6 +86,16 @@ export default function MainNav() {
               </Link>
             </li>
           )}
+
+          <li className={styles.menu__item}>
+            <Link
+              href={"/music/Profile"}
+              className={styles.menu__link}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Профиль
+            </Link>
+          </li>
 
           {/* Показываем либо Войти, либо Выйти */}
           {isAuthenticated ? (
@@ -99,7 +108,6 @@ export default function MainNav() {
                   border: "none",
                   cursor: "pointer",
                   font: "inherit",
-                  color: "inherit",
                 }}
               >
                 Выйти
