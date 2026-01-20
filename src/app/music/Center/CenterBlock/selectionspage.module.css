@@ -1,0 +1,104 @@
+.selectionsPage {
+    padding: 20px;
+}
+
+.pageTitle {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.loading, .error, .empty {
+    text-align: center;
+    padding: 40px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.error {
+    color: #ff4d4f;
+}
+
+.selectionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.selectionCard {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.selectionCard:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.selectionImage {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imagePlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #B672FF, #8A2BE2);
+}
+
+.placeholderIcon {
+    width: 48px;
+    height: 48px;
+    fill: #fff;
+    opacity: 0.8;
+}
+
+.selectionInfo {
+    color: #fff;
+}
+
+.selectionName {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.selectionDescription {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .selectionsGrid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .pageTitle {
+        font-size: 24px;
+    }
+}

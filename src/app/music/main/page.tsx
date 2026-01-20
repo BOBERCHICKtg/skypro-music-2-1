@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import "./page.css";
 import styles from "./page.module.css";
@@ -7,11 +7,10 @@ import MainSidebar from "@/src/components/MainSidebar/MainSidebar";
 import MainNav from "@/src/components/MainNav/MainNav";
 import CenterBlockLayout from "../Center/CenterBlock/CenterBlockLayout";
 import CenterBlock from "../Center/CenterBlock/CenterBlock";
-import MyPlaylistCenterBlock from '../Center/CenterBlock/MyPlaylistCenterBlock'
+import MyPlaylistCenterBlock from "../Center/CenterBlock/MyPlaylistCenterBlock";
 
 export default function Home() {
-  // Для переключения между страницами
-  const currentPage = "tracks"; // или "myPlaylist"
+  const currentPage = "tracks";
 
   return (
     <div className={styles.wrapper}>

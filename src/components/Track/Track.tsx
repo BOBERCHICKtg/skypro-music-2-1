@@ -90,8 +90,12 @@ export default function Track({
     dispatch(setCurrentPlaylist(playlist));
   };
 
+  const onClickTrackRecent = (): void => {
+    
+  }
+
   return (
-    <div className={styles.playlist__item} onClick={onClickTrack}>
+    <div className={styles.playlist__item} onClick={onClickTrack} onClick={onClickTrackRecent}>
       <div className={styles.playlist__track}>
         <div className={styles.track__title}>
           <div className={styles.track__titleImage}>
